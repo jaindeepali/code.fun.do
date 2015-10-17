@@ -31,9 +31,10 @@
 // subsequent calls to odauth() will usually complete immediately without the
 // popup because the cookie is still fresh.
 
+var token_string = 'EwB4Aq1DBAAUGCCXc8wU/zFu9QnLdZXy+YnElFkAAaOzXNHCI2vsNpzJfGBAjer6J66uBaC9uWqo3OuHIGEYcoGimsstx9U38xPqlJwLpASSz+FbAPssRCIELGrPkF9T57HAksGFO0xGs0R3xQmnX563FNZ0pbYs1qqkgAy8xe/uyVB5lfRCYBHtDs+Pz5ZkGu+DQWWbuylfYR3H0RWc54D0LhouiQvBjZ3rxmg7rcNmxfqOcGlgVJUw1gPieBSpm9dw/FAyM/RllfGEM51+QQEjb36/ct9OV80XkJDFR5ctrBitGz2YTnaPqKS4iD8aY7UNaGwk8otkdzvE8AWr1lmezrkpa+vVxsGhwPetP1ay6jH9VNNn6vBbVAuiFlwDZgAACFRltOYA4ni1SAFNYwYBLj2B0gmY4WJt15d5sACrnZSYa5nwo1cgd9bCRrpdaI/ZxByPixkZ0DQ6qvKcjQC2XgftI76ztJrjNgKD4FgWcp6tw/l0VXG/umbbjegWEo7cT5MnpXpBdCdWiniccgfC9hnbaJ7xkv11t4nAenfAIYn3YApISStngy18uYlDYA5ZVL1qbpk6ExfK2XTXlL8v5iJxvQoOy3WkXlruw3qip8kxs44Nx6IoGb4RXDdoJE+C0R38cm1HuKr6PAhjVo6sLX1UrDnmBBjvmVjwQ3Z4gG7aCjuUlBJverMFT3RJ/xXfyg/m3poiTbzZu5Ersplsa5oqO2vfnClCxqGUtxehFdl4fIqCNApY5hgkk7Nk8K3Tpez1VVXPZ8sy4xWI2YeWPx4uGVHWAhtAKBxMPhKvq+bAabkF6ttApcxfOkeBB4S2Jy7aaAE=';
+
 function odauth(wasClicked) {
-  ensureHttps();
-  var token = "EwB4Aq1DBAAUGCCXc8wU/zFu9QnLdZXy+YnElFkAAWC5WBg5vfjDRbnLmszfqYWguyPOaQcjBN4YczAxxMEmVx2nMKjan1mSkn88XkPURpQ8T+cm3OERlTGyA3w4EpiJfZTnxzQUYCn2b2olyK1kPMjfe01Ul4qB9JdVmNmBZB1F9wbG+cvjjCyKNlkXmlsX2oKE/7rIBpqT3gcsPz7w44xSGNyOYK5ZdR8QcxTe23BqhiAh+lRJrM6qQcYo4F0wTHDXoGT02Ec3YWauKy3rDTw4OV2tfoCI0QBDd//rOdoXj8/e56KuTkxWJV1OAXVZiZPpFfgVm0SBLxlz7cTgbm+9BG8x/ItMle81ROPiXA+bZJO3DT+f6Rwb/3nkIAADZgAACP/hGQA4XF0wSAEy6AQ3l42DJ7WtbtJp+gpaQq7uYYM+A84Cdovdwkjz7MkW1SYbrXL8tPVsOXGbIGVZ9KqvOnm5Tl5aPwB8aquQuSSZ94lB51GZfEMtx21a6NrjhBU4CC2GxwYLq8aYZZ7NkJXDjRLSXgR9I6TRSg049i27IuhnuVSyugWi+gr+NuV6YZumiyr7AgnODl7mbgghxMIyvGF9UxtNvOLF4xyFRSPxlC4mF0W6JHSDsZ1ePX/lITwAnZUlRHqDm3CysWXXxXzDSvuV9Fb0IR1w+JTN4dKRSYWQAau+QewkbquTghJD9aPfYFXxd89YvNR+VDZtbdY1Hnpad1SPT6b95y9RD3U20l4QUBULjVnDLn17edDHlymRWPtb2M25Rn6eQlRbkBFngGuIBNnEW69jCPCg+jzVNIu4uCOQ1UfQMxT5s0nRGFlB23iiYwE=";
+  var token = token_string;
   if (token) {
     onAuthenticated(token);
   }
@@ -47,7 +48,7 @@ function odauth(wasClicked) {
 
 function onAuthCallback() {
   var authInfo = getAuthInfoFromUrl();
-  var token = authInfo["access_token"];
+  var token = token_string;
   var expiry = parseInt(authInfo["expires_in"]);
   setCookie(token, expiry);
   window.opener.onAuthenticated(token, window);
