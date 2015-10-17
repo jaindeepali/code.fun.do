@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title>onedrive explorer</title>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script id="odauth" src="odauth.js"
    clientId="0000000048144E4F" scopes="onedrive.readonly wl.signin"
@@ -31,7 +32,7 @@
     $(window).bind('hashchange', function() {
       if (window.location.hash != loadedForHash) {
         loadedForHash = window.location.hash;
-        // odauth();
+        odauth();
       }
 
      return false;
@@ -103,13 +104,12 @@
 
     // odauth calls our onAuthenticated method to give us the user's auth token.
     // in this demo app we just use this as the method to drive the page logic
-    // function onAuthenticated(token, authWindow) {
-    var token = 'EwB4Aq1DBAAUGCCXc8wU/zFu9QnLdZXy+YnElFkAAQC8Gj6JHhkBr7ZLo21VIvIr3fHxBNTOSRgIX6yP1sXr9Ia5qR0aRMu36RgA4ggfS10vLY4IupITjU67IeiRiJuCL1I7Zx0EgW+Q2WWUgz0g1cSMpo4puPKChiywdc1a4KuXN++B1lZoCdVvxCZzkb+CQiIJEFFDlQqJMod8hGBSJ5hcxeBfqe5nd5dK6pyPO0C0DDz+tlvjkjtk1REgmW6whFxB/cI+yxa6jrn3Rn+bs+hwrTisUmCgxhvbq6eo8L0jBpw7Ibm3kX7S39jDGCelw/TevNwJDyrbG1HPp+03oe+F6zNWoM9FEZKotFlONDUmEEcAhU7P6VTBusNH0h0DZgAACGWVb14IC+scSAH+zrsuSLhpiTC/+Eabu/VASGz6jVGB2JybFN2WVxVz9oT7D3wNaJ+6QfMX/VaYKQKAIP78D0zIkr+DNY3493ZPR1kan188uSa50p1/i1u0oPMrlea6zY2oVmuMguDKRAS+v1QYQHocvbDuuF+rMh1CuP3GHqalbusfjWS21UCfDW3bKIcazI5JIEJLKh7yuJM9hMrEmWUEuiUDQ7ixVG1Z4djgwUfGO4MvjaDYylkZYPtONthzm0jqkcFO36hK1HXmHW3d4XfA1m2Zo/KspOjDY1uHEMc77SBPuoT879xsb7547UETQlRcnwLObL9eYSnZFuuSwHR24HJr7PBAY7ek7zvQGfNZ1CZ+8KhPIz7ot/m7+XiG1cE/fd2xU/JD7hC7AxpJHaqISVkBjxJVGZ6h0yiLIpBbVukISpuKz2FDIt/OBOvcrVRyaAE='
+    function onAuthenticated(token, authWindow) {
       if (token) {
-        // if (authWindow) {
-        //   removeLoginButton();
-        //   authWindow.close();
-        // }
+        if (authWindow) {
+          removeLoginButton();
+          authWindow.close();
+        }
 
         (function($){
           // we extract the onedrive path from the url fragment and we
@@ -225,12 +225,12 @@
       else {
         alert("Error signing in");
       }
-    // }
+    }
 
     // start the whole thing off by calling odauth() in non-click mode.
     // if the user isn't logged in already, a sign-in link will appear
     // for them to click.
-    // odauth();
+    odauth();
   </script>
 </body>
 </html>
