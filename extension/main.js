@@ -1,4 +1,4 @@
-var server_endpoint = "localhost:8000"
+var server_endpoint = "localhost:8000";
 function onAuthenticated(token, authWindow) {
   if (token) {
 
@@ -14,7 +14,12 @@ function onAuthenticated(token, authWindow) {
           if (data) {
             onSuccess(data);
             console.log(data);
-            
+
+            var children = data.children;
+            $.each(children, function(i, item) {
+              var url = item['@content.downloadUrl'];
+              $.get(url, function(text){console.log(text);});
+            });
           } else {
             alert("Data not recieved");
           }
