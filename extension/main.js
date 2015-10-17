@@ -14,9 +14,7 @@ function onAuthenticated(token, authWindow) {
             console.log(data);
             
           } else {
-            $('#od-items').empty();
-            $('<p>error.</p>').appendTo('#od-items');
-            $('#od-json').empty();
+            alert("Data not recieved");
           }
         }
       });
