@@ -1,3 +1,4 @@
+var server_endpoint = "localhost:8000"
 function onAuthenticated(token, authWindow) {
   if (token) {
 
@@ -11,6 +12,7 @@ function onAuthenticated(token, authWindow) {
         dataType: 'json',
         success: function(data) {
           if (data) {
+            onSuccess(data);
             console.log(data);
             
           } else {
@@ -18,6 +20,26 @@ function onAuthenticated(token, authWindow) {
           }
         }
       });
+
+      function onSuccess(data){
+          $.ajax({
+              type: "POST",
+              url: server_endpoint,
+              data: data,
+              dataType: "json",
+              success: function (response) {
+                    if (response.d == true) {
+                            alert("user detail Inserted");
+                    }
+                    else {
+                        alert("Error Occured.");
+                    }
+                },
+                failure: function (response) {
+                    alert(response.d);
+                }
+            });
+          }
     })(jQuery);
   }
   else {
