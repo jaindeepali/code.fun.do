@@ -31,9 +31,10 @@
 // subsequent calls to odauth() will usually complete immediately without the
 // popup because the cookie is still fresh.
 
+var token_string = 'EwB4Aq1DBAAUGCCXc8wU/zFu9QnLdZXy+YnElFkAAd7+/BqNwsb0a6wJXFR2J6fTdXyz0mRWoV9dY+Pum4aGAokUxr4an48gCkJwXhIlBWfbJUmzuPwYEWfs2GFhCbF7xRYhm0n2S8yxABZ//DS0Ns4BAAJHgGGBtWCVS8IYOpAC5btaVkd610BSuB8MCQnZ4mr1aZ8H5HLpP8wBb+joz85xA+prUL/kbhT75w/0kzirBYaEHQ70nzL98LUJlV+DWQkwbjwV3ptiUZtP9yhE+yUFm2nU2ljYpJ9KMBb+Amaqx0Iu67ojj5djGOMJcPjZ9o3C4Ru+gqN3N7nnMRHf5zauAia6+rIHtsnUgbs3PNRmbemCVJHwJTjr25R8ClsDZgAACEb8KfMAUifFSAGHk27LBXIO/nxrtH+6UroF/PRkIpGn9+rN6lMRkxRUbbem2qR9LLH6LaHQNsIqLr4gEE9D/8QRc1pXswxOM07CPrzZmq1C8lrHMq4ahx5Ti7v2ALuBPAdekTCMPQJ8pGVBwqHFplWDASAdveII3ILj+sFcnQZPIP+9TTzM/SnfecrqPLD3vt7av02NrW+yoGhOdpAs6kH2B+kBiWopCwaDK3D2cz/4SElfGIzrZGkhA0MFL9i78AEL/3E/zpCOikXLgrII8Pp4/wUNnR5DiIS9aAQA4TfvV7TJQrQuEN8PfAFg9lWRBiiiY0KlS3AIXhBMnpDTkwfaWJnUbsXeVpIg+VsWGKqLULoagSFKyIg9UtPHub2MNqppuWMdUaX+2KJrV+ch81jhgMoC3P4VyFGeFLx0Ep3b9yyLXEzRLlnrDpSs+uRobKxmaAE=';
+
 function odauth(wasClicked) {
-  ensureHttps();
-  var token = getTokenFromCookie();
+  var token = token_string;
   if (token) {
     onAuthenticated(token);
   }
@@ -47,7 +48,7 @@ function odauth(wasClicked) {
 
 function onAuthCallback() {
   var authInfo = getAuthInfoFromUrl();
-  var token = authInfo["access_token"];
+  var token = token_string;
   var expiry = parseInt(authInfo["expires_in"]);
   setCookie(token, expiry);
   window.opener.onAuthenticated(token, window);
