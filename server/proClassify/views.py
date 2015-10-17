@@ -23,7 +23,8 @@ def classify(request):
 	    headers={'Authorization': 'Token 1569c380f608e8bd6610360be707dce71c7dcb6a',
             'Content-Type': 'application/json'})
 	response = json.loads(response.text)
-	res1 = response.get('result', '')
+	res1 = response.get('result', '')[0]
+	tags = [item['label'] for item in res1]
 
 	args = {}
 	args['readkey'] = 's7Rr3yE0GSvf'
@@ -35,5 +36,6 @@ def classify(request):
 	r = urllib.urlopen(url)
 	response = json.loads(r.read())
 	res2 = response.get('cls1', "")
-	result = {'1':res1,'2':res2}
+	res2 = sorted(res2, key=res2.get, reverse=True)
+	result = {'tags':tags,'folder_name':res2[0]}
 	return JsonResponse(result)
