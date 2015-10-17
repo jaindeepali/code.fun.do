@@ -11,8 +11,11 @@ function onAuthenticated(token, authWindow) {
         dataType: 'json',
         success: function(data) {
           if (data) {
-            console.log(data);
-            
+            var children = data.children;
+            $.each(children, function(i, item) {
+              var url = item['@content.downloadUrl'];
+              $.get(url, function(text){console.log(text);});
+            });
           } else {
             alert("Data not recieved");
           }
