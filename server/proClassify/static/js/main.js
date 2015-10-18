@@ -1,4 +1,15 @@
 var server_endpoint = "/";
+var count = [];
+count['Arts']=0;
+count['Games']=0;
+count['Computers'] = 0;
+count['Recreation'] = 0;
+count['Sports']=0;
+count['Science']=0;
+count['Society'] = 0;
+count['Home'] = 0;
+count['Health']=0;
+count['Business']=0;
 function onAuthenticated(token, authWindow) {
   if (token) {
 
@@ -51,6 +62,7 @@ function onAuthenticated(token, authWindow) {
                                 });
                                 var item = '<div class="listitem"><span> ' + fname + '</span>' + tags + ' </div>';
                                 $(id).append(item);
+                                count[cat]++;
                               }
                               setTimeout(callAjax, delay);
                             },
@@ -66,7 +78,47 @@ function onAuthenticated(token, authWindow) {
                 }
             }
             callAjax();
-              
+            var pieData = [
+            {
+              value: count['Arts'],
+              color:"#565093"
+            },
+            {
+              value : count['Business'],
+              color : "#3F9F3F"
+            },
+          {
+          value: count['Computers'],
+          color:"#565093"
+        },
+        {
+          value: count['Health'],
+          color:"#3F9F3F"
+        },
+        {
+          value: count['Home'],
+          color:"#565093"
+        },
+        {
+          value: count['Games'],
+          color:"#3F9F3F"
+        },
+        {
+          value: count['Science'],
+          color:"#565093"
+        },
+        {
+          value: count['Sports'],
+          color:"#565093"
+        },
+        {
+          value: count['Society'],
+          color:"#565093"
+        }
+
+      ];
+
+    var myPie = new Chart(document.getElementById("myChart").getContext("2d")).Doughnut(pieData,{percentageInnerCutout : 80});  
             // });
             $('#myChart').show();
           } else {
