@@ -46,6 +46,7 @@ def classify(request):
 	    headers={'Authorization': 'Token 1569c380f608e8bd6610360be707dce71c7dcb6a',
             'Content-Type': 'application/json'})
 	response = json.loads(response.text)
+	# print response.get('result', '')[0]
 	res1 = response.get('result', '')[0]
 	tags = [item['label'] for item in res1]
 
@@ -57,6 +58,7 @@ def classify(request):
 	args = urllib.urlencode(args)
 	url = "http://uclassify.com/browse/uClassify/Topics/ClassifyText?%s" % args
 	r = urllib.urlopen(url)
+	print r.read()
 	response = json.loads(r.read())
 	res2 = response.get('cls1', "")
 	res2 = sorted(res2, key=res2.get, reverse=True)

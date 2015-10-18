@@ -55,7 +55,7 @@ function onAuthenticated(token, authWindow) {
 }
 // odauth();
 
-// function list_files() {
-//   $.getElementsByTagName('')
-// }
+function list_files() {
+  $.get('')
+}
 // console.log('end');
