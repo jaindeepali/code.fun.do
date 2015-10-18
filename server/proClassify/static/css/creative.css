@@ -262,7 +262,7 @@ header .header-content .header-content-inner p {
     display: block;
     position: relative;
     margin-bottom: 2px auto;
-    max-width: 320px;
+    max-width: 500px;
 }
 
 .portfolio-box .portfolio-box-caption {
@@ -488,4 +488,22 @@ body {
     float: right;
     padding: 15px;
     bottom: 10px
+}
+
+.inside{
+    height:60px;
+    width:60px;
+    border-radius: 5px;
+}
+
+p.thick{
+    font-weight: bold;
+    font-size: 15px;
+}
+#organiseNow{
+    background-color: #f05f40;
+    color: #ffffff;
+}
+#organise{
+    background-color: #ffffff;
 }
