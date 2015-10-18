@@ -27,6 +27,9 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/creative.css" type="text/css">
     <script type="text/javascript" src="Chart.js"></script>
+    <script id="odauth" src="js/odauth.js"
+       clientId="000000004016F5E2" scopes="onedrive.readonly wl.signin"
+       redirectUri="https://onedrive.github.io/odx/callback.html"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -86,7 +89,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="#"  id ="organiseNow" class="btn btn-default btn-xl">Organise!</a>
+                    <span  id ="organiseNow" class="btn btn-default btn-xl" onclick='odauth();'>Organise!</span>
                     <hr class="light">
                     <canvas id="myChart" width="300" height="300"></canvas>
                 </div>
@@ -329,6 +332,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/creative.js"></script>
+
+    <script type="text/javascript" src="js/main.js"></script>
 
 </body>
 

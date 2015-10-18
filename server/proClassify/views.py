@@ -8,9 +8,32 @@ import json
 import requests
 import urllib
 
+def json_response(func):
+    """
+    A decorator thats takes a view response and turns it
+    into json. If a callback is added through GET or POST
+    the response is JSONP.
+    """
+    def decorator(request, *args, **kwargs):
+        objects = func(request, *args, **kwargs)
+        if isinstance(objects, HttpResponse):
+            return objects
+        try:
+            data = simplejson.dumps(objects)
+            if 'callback' in request.REQUEST:
+                # a jsonp response!
+                data = '%s(%s);' % (request.REQUEST['callback'], data)
+                return HttpResponse(data, "text/javascript")
+        except:
+            data = simplejson.dumps(str(objects))
+        return HttpResponse(data, "application/json")
+    return decorator
+
+# @json_response
 @csrf_exempt
 def classify(request):	
-	inp = request.POST
+	inp = request.GET
+	name = inp['name']
 	text = inp['text']
 	text = text.encode('ascii', 'ignore')
 	
@@ -37,5 +60,9 @@ def classify(request):
 	response = json.loads(r.read())
 	res2 = response.get('cls1', "")
 	res2 = sorted(res2, key=res2.get, reverse=True)
-	result = {'tags':tags,'folder_name':res2[0]}
+	result = {}
+	result['tags'] = tags;
+	result['folder_name'] = res2[0];
+	with open('results/' + name, 'w') as outfile:
+		json.dump(result,outfile)
 	return JsonResponse(result)
