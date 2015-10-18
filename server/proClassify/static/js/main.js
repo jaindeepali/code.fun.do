@@ -80,41 +80,68 @@ function onAuthenticated(token, authWindow) {
             callAjax();
             var pieData = [
             {
-              value: count['Arts'],
-              color:"#565093"
-            },
-            {
-              value : count['Business'],
-              color : "#3F9F3F"
-            },
-          {
-          value: count['Computers'],
-          color:"#565093"
-        },
-        {
-          value: count['Health'],
-          color:"#3F9F3F"
-        },
-        {
-          value: count['Home'],
-          color:"#565093"
-        },
-        {
-          value: count['Games'],
-          color:"#3F9F3F"
-        },
-        {
-          value: count['Science'],
-          color:"#565093"
-        },
-        {
-          value: count['Sports'],
-          color:"#565093"
-        },
-        {
-          value: count['Society'],
-          color:"#565093"
-        }
+       value: count['Arts'],
+       color:"#ce57a0 ",
+       highlight: "#FF5A5E ",
+       label: "Art"
+   },
+    {
+       value: count['Business'],
+       color:"#00aeef ",
+       highlight: "#FF5A5E ",
+       label: "Business"
+   },
+  
+   {
+       value: count['Computers'],
+       color: "#00fe9c ",
+       highlight: "#FFC870 ",
+       label: "Computers"
+   },
+   {
+       value: count['Society'],
+       color:"#78c5ee ",
+       highlight: "#FF5A5E ",
+       label: "Social"
+   },
+   {
+       value: count['Science'],
+       color:"#00b48d ",
+       highlight: "#FF5A5E ",
+       label: "Science"
+   },
+   {
+       value: count['Recreation'],
+       color:"#ff6d00 ",
+       highlight: "#FF5A5E ",
+       label: "Recreation"
+   },
+   {
+       value: count['Sports'],
+       color:"#8252b1 ",
+       highlight: "#FF5A5E ",
+       label: "Sport"
+   },
+  
+  
+   {
+       value: count['Games'],
+       color:"#f1583e ",
+       highlight: "#FF5A5E ",
+       label: "Games"
+   },
+   {
+       value: count['Health'],
+       color: "#abb48d ",
+       highlight: "#5AD3D1 ",
+       label: "Health"
+   },
+   {
+       value: count['Home'],
+       color: "#f16690 ",
+       highlight: "#FFC870 ",
+       label: "Home"
+   }
 
       ];
 
