@@ -1,4 +1,6 @@
-$(document).ready(function () {
+$btn = document.getElementById('organiseNow');
+//$btn.onClick(function () {
+$(document).ready(function(){
     var pieData = [
         {
           value: 35,
@@ -11,6 +13,9 @@ $(document).ready(function () {
       ];
 
     var myPie = new Chart(document.getElementById("myChart").getContext("2d")).Doughnut(pieData,{percentageInnerCutout : 80});
+   // var myChart = document.getElementById('myChart');
+
+//myChart.innerHTML = myPie;
 });
 
 /*!

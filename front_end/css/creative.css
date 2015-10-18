@@ -261,8 +261,8 @@ header .header-content .header-content-inner p {
 .portfolio-box {
     display: block;
     position: relative;
-    margin: 0 auto;
-    /*max-width: 650px;*/
+    margin-bottom: 2px auto;
+    max-width: 320px;
 }
 
 .portfolio-box .portfolio-box-caption {
