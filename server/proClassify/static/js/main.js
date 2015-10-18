@@ -30,16 +30,24 @@ function onAuthenticated(token, authWindow) {
                       // jsonp: false,
                       async: false,
                       success: function (response) {
-                        console.log(response);
+                        // console.log(response);
                         cat = response['folder_name'];
-                        
+                        fname = response['name'];
+                        tag_list = response['list'];
+                        id = '#' + cat + ' .list';
+                        var tags = '';
+                        // $.each(tag_list, function(t,tg){
+                        //   tags = tags + '<span> ' + tg + ' </span>'
+                        // });
+                        var item = '<div class="listitem"><span> ' + fname + ' </span><span> ' + tags + ' </span></div>'
+                        $(id).append(item);
                       },
                       error: function(err) {
                         // alert(err);
                       }
                     });
                 } catch(err) {
-                  console.log('errdone');
+                  // console.log('errdone');
                 }
                 console.log(name);
               });
