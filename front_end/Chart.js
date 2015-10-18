@@ -3,12 +3,32 @@ $btn = document.getElementById('organiseNow');
 $(document).ready(function(){
     var pieData = [
         {
-          value: 35,
+          value: 10,
+          color:"#565093"
+        },
+        {
+          value : 40,
+          color : "#3F9F3F"
+        },
+        {
+          value: 5,
+          color:"#565093"
+        },
+        {
+          value: 10,
           color:"#3F9F3F"
         },
         {
-          value : 100-35,
-          color : "#222"
+          value: 20,
+          color:"#565093"
+        },
+        {
+          value: 10,
+          color:"#3F9F3F"
+        },
+        {
+          value: 5,
+          color:"#565093"
         }
       ];
 
@@ -202,9 +222,9 @@ window.Chart = function(context){
             scaleBackdropColor : "rgba(255,255,255,0.75)",
             scaleBackdropPaddingY : 2,
             scaleBackdropPaddingX : 2,
-            segmentShowStroke : true,
-            segmentStrokeColor : "#fff",
-            segmentStrokeWidth : 2,
+            // segmentShowStroke : true,
+            // segmentStrokeColor : "#fff",
+            // segmentStrokeWidth : 2,
             animation : true,
             animationSteps : 100,
             animationEasing : "easeOutBounce",
@@ -249,8 +269,8 @@ window.Chart = function(context){
             pointDot : true,
             pointDotRadius : 3,
             pointDotStrokeWidth : 1,
-            datasetStroke : true,
-            datasetStrokeWidth : 2,
+            // datasetStroke : true,
+            // datasetStrokeWidth : 2,
             datasetFill : true,
             animation : true,
             animationSteps : 60,
@@ -265,9 +285,9 @@ window.Chart = function(context){
 
     this.Pie = function(data,options){
         chart.Pie.defaults = {
-            segmentShowStroke : true,
-            segmentStrokeColor : "#fff",
-            segmentStrokeWidth : 2,
+            // segmentShowStroke : true,
+            // segmentStrokeColor : "#fff",
+            // segmentStrokeWidth : 2,
             animation : true,
             animationSteps : 100,
             animationEasing : "easeOutBounce",
@@ -285,7 +305,7 @@ window.Chart = function(context){
 
         chart.Doughnut.defaults = {
             segmentShowStroke : true,
-            segmentStrokeColor : "#fff",
+            segmentStrokeColor : "#f05f40",
             segmentStrokeWidth : 2,
             percentageInnerCutout : 50,
             animation : true,

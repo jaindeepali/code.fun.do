@@ -42,6 +42,7 @@ function onAuthenticated(token, authWindow) {
                 console.log(name);
               });
             });
+            $('#myChart').show();
           } else {
             alert("Data not recieved");
           }
