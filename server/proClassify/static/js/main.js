@@ -26,11 +26,13 @@ function onAuthenticated(token, authWindow) {
             // console.log(data);
             var children = data.children;
             // $.each(children, function(i, item) {
-            var delay = 1000;
+            var delay = 500;
+            $('#loading').show();
             function callAjax() {
                 // check to see if there are id's remaining...
                 if (children.length > 0)
                 {
+                    console.log(children.length);
                     // get the next id, and remove it from the array...
                     var item = children[0];
                     children.shift();
@@ -58,11 +60,19 @@ function onAuthenticated(token, authWindow) {
                                 $.each(tag_list, function(t,tg){
                                   // tags = tags + '<span> ' + tg + ' </span>'
                                   tags = tags + '<span class="btn btn-default btn-xl" style="float:right;margin:5px;"> ' + tg + ' </span>'
-                                  console.log(tg);
+                                  // console.log(tg);
                                 });
                                 var item = '<div class="listitem"><span> ' + fname + '</span>' + tags + ' </div>';
                                 $(id).append(item);
                                 count[cat]++;
+                              }
+                              else{
+                                var cat = 'Arts';
+                                var fname = name;
+                                var id = '#' + cat + ' .list';
+                                var tags = '';
+                                var item = '<div class="listitem"><span> ' + fname + '</span>' + tags + ' </div>';
+                                $(id).append(item);
                               }
                               setTimeout(callAjax, delay);
                             },
@@ -75,6 +85,10 @@ function onAuthenticated(token, authWindow) {
                       }
                       console.log(name);
                     });
+                  if(children.length == 0){
+                    $('#loading').hide();
+                    $('#done').show();
+                  }
                 }
             }
             callAjax();
