@@ -61,8 +61,13 @@ def classify(request):
 	res2 = response.get('cls1', "")
 	res2 = sorted(res2, key=res2.get, reverse=True)
 	result = {}
+	result['name'] = name;
 	result['tags'] = tags;
 	result['folder_name'] = res2[0];
-	with open('results/' + name, 'w') as outfile:
-		json.dump(result,outfile)
+	result['text'] = text;
+	# with open('results/' + name, 'w') as outfile:
+	# 	json.dump(result,outfile)
+	with open('results/final.json', 'ab') as outfile:
+		r = json.dumps(result) + '\n'
+		outfile.write(r)
 	return JsonResponse(result)

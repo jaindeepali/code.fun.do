@@ -7,23 +7,6 @@ function onAuthenticated(token, authWindow) {
       var odurl = "https://api.onedrive.com/v1.0/drive/root:/Documents/:";
       var odquery = "?expand=thumbnails,children(expand=thumbnails(select=large,c200x150_Crop))&access_token=" + token;
 
-      // $.ajax({
-      //     type: "POST",
-      //     url: odurl,
-      //     data: {
-      //           name: "Arts",
-      //           // folder:{},
-      //           // @name.conflictBehavior: "rename"
-      //         },
-      //     dataType: "json",
-      //     jsonp: false,
-      //     async: false,
-      //     success: function (response) {
-      //       // console.log(JSON.parse(response));
-
-      //     }
-      //   });
-
       $.ajax({
         url: odurl + odquery,
         dataType: 'json',
@@ -36,6 +19,7 @@ function onAuthenticated(token, authWindow) {
               var url = item['@content.downloadUrl'];
               $.get(url, function(text){
                 // console.log(text);
+                text = encodeURIComponent(text);
                 var req = {text:text}
                 try{
                   $.ajax({
@@ -69,5 +53,9 @@ function onAuthenticated(token, authWindow) {
     alert("Error signing in");
   }
 }
-odauth();
+// odauth();
+
+// function list_files() {
+//   $.getElementsByTagName('')
+// }
 // console.log('end');
