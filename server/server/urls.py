@@ -20,6 +20,6 @@ from rest_framework import routers, serializers, viewsets
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
+    # url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^', include('proClassify.urls')),
 ]

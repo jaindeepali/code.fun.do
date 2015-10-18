@@ -26,8 +26,8 @@ function onAuthenticated(token, authWindow) {
                       type: "GET",
                       url: server_endpoint,
                       data: {text: text, name:name},
-                      dataType: "jsonp",
-                      jsonp: false,
+                      dataType: "json",
+                      // jsonp: false,
                       async: false,
                       success: function (response) {
                         console.log('here');
@@ -59,4 +59,3 @@ function onAuthenticated(token, authWindow) {
 function list_files() {
   $.get('')
 }
-// console.log('end');

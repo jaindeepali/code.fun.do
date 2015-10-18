@@ -4,9 +4,12 @@ from django.http import JsonResponse
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
 from django.template import Context, loader, Template
+import os
 import json
 import requests
 import urllib
+
+BASE_DIR = os.path.dirname(__file__)
 
 def json_response(func):
     """
@@ -58,7 +61,7 @@ def classify(request):
 	args = urllib.urlencode(args)
 	url = "http://uclassify.com/browse/uClassify/Topics/ClassifyText?%s" % args
 	r = urllib.urlopen(url)
-	print r.read()
+	# print r.read()
 	response = json.loads(r.read())
 	res2 = response.get('cls1', "")
 	res2 = sorted(res2, key=res2.get, reverse=True)
@@ -69,7 +72,15 @@ def classify(request):
 	result['text'] = text;
 	# with open('results/' + name, 'w') as outfile:
 	# 	json.dump(result,outfile)
-	with open('results/final.json', 'ab') as outfile:
-		r = json.dumps(result) + '\n'
-		outfile.write(r)
+	# with open('results/final.json', 'ab') as outfile:
+	# 	r = json.dumps(result) + '\n'
+	# 	outfile.write(r)
 	return JsonResponse(result)
+
+@csrf_exempt
+def demo(request):
+	var = {}
+	var['data'] = "data"
+	c = Context( var )
+	t = loader.get_template("index.html")
+	return HttpResponse( t.render(c) )
