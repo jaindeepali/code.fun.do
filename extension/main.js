@@ -18,7 +18,10 @@ function onAuthenticated(token, authWindow) {
             var children = data.children;
             $.each(children, function(i, item) {
               var url = item['@content.downloadUrl'];
-              $.get(url, function(text){console.log(text);});
+              $.get(url, function(text){
+                console.log(text);
+                
+              });
             });
           } else {
             alert("Data not recieved");
