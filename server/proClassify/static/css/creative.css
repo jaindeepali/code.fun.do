@@ -474,3 +474,18 @@ img::-moz-selection {
 body {
     webkit-tap-highlight-color: #222;
 }
+
+.listitem {
+    font-size: 20px;
+    border-bottom: solid 1px #fff;
+    margin: 50px;
+}
+
+.tag {
+    margin-left: 20px;
+    margin-bottom: 8px;
+    background-color: #aaa;
+    float: right;
+    padding: 15px;
+    bottom: 10px
+}

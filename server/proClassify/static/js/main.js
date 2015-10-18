@@ -1,4 +1,4 @@
-var server_endpoint = "http://localhost:8000";
+var server_endpoint = "/";
 function onAuthenticated(token, authWindow) {
   if (token) {
 
@@ -14,44 +14,60 @@ function onAuthenticated(token, authWindow) {
           if (data) {
             // console.log(data);
             var children = data.children;
-            $.each(children, function(i, item) {
-              var name = item.name;
-              var url = item['@content.downloadUrl'];
-              $.get(url, function(text){
-                // console.log(text);
-                text = encodeURIComponent(text);
-                var req = {text:text}
-                try{
-                  $.ajax({
-                      type: "GET",
-                      url: '/',
-                      data: {text: text, name:name},
-                      dataType: "json",
-                      // jsonp: false,
-                      async: false,
-                      success: function (response) {
-                        // console.log(response);
-                        cat = response['folder_name'];
-                        fname = response['name'];
-                        tag_list = response['list'];
-                        id = '#' + cat + ' .list';
-                        var tags = '';
-                        // $.each(tag_list, function(t,tg){
-                        //   tags = tags + '<span> ' + tg + ' </span>'
-                        // });
-                        var item = '<div class="listitem"><span> ' + fname + ' </span><span> ' + tags + ' </span></div>'
-                        $(id).append(item);
-                      },
-                      error: function(err) {
-                        // alert(err);
+            // $.each(children, function(i, item) {
+            var delay = 1000;
+            function callAjax() {
+                // check to see if there are id's remaining...
+                if (children.length > 0)
+                {
+                    // get the next id, and remove it from the array...
+                    var item = children[0];
+                    children.shift();
+                    var name = item.name;
+                    var url = item['@content.downloadUrl'];
+                    $.get(url, function(text){
+                      // text = encodeURIComponent(text);
+                      var req = {text:text}
+                      try{
+                        $.ajax({
+                            cache : false,
+                            type: "POST",
+                            url: '/',
+                            data: {text: text, name:name},
+                            dataType: "json",
+                            // jsonp: false,
+                            async: false,
+                            success: function (response) {
+                              if(response['success'] == 1 ){
+                                var cat = response['folder_name'];
+                                var fname = response['name'];
+                                var tag_list = response['tags'];
+                                var id = '#' + cat + ' .list';
+                                var tags = '';
+                                $.each(tag_list, function(t,tg){
+                                  // tags = tags + '<span> ' + tg + ' </span>'
+                                  tags = tags + '<span class="btn btn-default btn-xl" style="float:right;margin:5px;"> ' + tg + ' </span>'
+                                  console.log(tg);
+                                });
+                                var item = '<div class="listitem"><span> ' + fname + '</span>' + tags + ' </div>';
+                                $(id).append(item);
+                              }
+                              setTimeout(callAjax, delay);
+                            },
+                            error: function(err) {
+                              // alert(err);
+                            }
+                          });
+                      } catch(err) {
+                        // console.log('errdone');
                       }
+                      console.log(name);
                     });
-                } catch(err) {
-                  // console.log('errdone');
                 }
-                console.log(name);
-              });
-            });
+            }
+            callAjax();
+              
+            // });
             $('#myChart').show();
           } else {
             alert("Data not recieved");
