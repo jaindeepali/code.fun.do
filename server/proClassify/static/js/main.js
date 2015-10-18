@@ -11,6 +11,7 @@ count['Home'] = 0;
 count['Health']=0;
 count['Business']=0;
 function onAuthenticated(token, authWindow) {
+  $('#loading').show();
   if (token) {
 
     (function($){
@@ -27,7 +28,6 @@ function onAuthenticated(token, authWindow) {
             var children = data.children;
             // $.each(children, function(i, item) {
             var delay = 500;
-            $('#loading').show();
             function callAjax() {
                 // check to see if there are id's remaining...
                 if (children.length > 0)
@@ -39,8 +39,6 @@ function onAuthenticated(token, authWindow) {
                     var name = item.name;
                     var url = item['@content.downloadUrl'];
                     $.get(url, function(text){
-                      // text = encodeURIComponent(text);
-                      var req = {text:text}
                       try{
                         $.ajax({
                             cache : false,
@@ -88,80 +86,81 @@ function onAuthenticated(token, authWindow) {
                   if(children.length == 0){
                     $('#loading').hide();
                     $('#done').show();
+                             var pieData = [
+                             {
+                        value: count['Arts'],
+                        color:"#ce57a0 ",
+                        highlight: "#FF5A5E ",
+                        label: "Art"
+                    },
+                     {
+                        value: count['Business'],
+                        color:"#00aeef ",
+                        highlight: "#FF5A5E ",
+                        label: "Business"
+                    },
+                    
+                    {
+                        value: count['Computers'],
+                        color: "#00fe9c ",
+                        highlight: "#FFC870 ",
+                        label: "Computers"
+                    },
+                    {
+                        value: count['Society'],
+                        color:"#78c5ee ",
+                        highlight: "#FF5A5E ",
+                        label: "Social"
+                    },
+                    {
+                        value: count['Science'],
+                        color:"#00b48d ",
+                        highlight: "#FF5A5E ",
+                        label: "Science"
+                    },
+                    {
+                        value: count['Recreation'],
+                        color:"#ff6d00 ",
+                        highlight: "#FF5A5E ",
+                        label: "Recreation"
+                    },
+                    {
+                        value: count['Sports'],
+                        color:"#8252b1 ",
+                        highlight: "#FF5A5E ",
+                        label: "Sport"
+                    },
+                    
+                    
+                    {
+                        value: count['Games'],
+                        color:"#f1583e ",
+                        highlight: "#FF5A5E ",
+                        label: "Games"
+                    },
+                    {
+                        value: count['Health'],
+                        color: "#abb48d ",
+                        highlight: "#5AD3D1 ",
+                        label: "Health"
+                    },
+                    {
+                        value: count['Home'],
+                        color: "#f16690 ",
+                        highlight: "#FFC870 ",
+                        label: "Home"
+                    }
+
+                       ];
+
+                     var myPie = new Chart(document.getElementById("myChart").getContext("2d")).Doughnut(pieData,{percentageInnerCutout : 80});  
+                     console.log(myPie);
                   }
                 }
             }
             callAjax();
-            var pieData = [
-            {
-       value: count['Arts'],
-       color:"#ce57a0 ",
-       highlight: "#FF5A5E ",
-       label: "Art"
-   },
-    {
-       value: count['Business'],
-       color:"#00aeef ",
-       highlight: "#FF5A5E ",
-       label: "Business"
-   },
-  
-   {
-       value: count['Computers'],
-       color: "#00fe9c ",
-       highlight: "#FFC870 ",
-       label: "Computers"
-   },
-   {
-       value: count['Society'],
-       color:"#78c5ee ",
-       highlight: "#FF5A5E ",
-       label: "Social"
-   },
-   {
-       value: count['Science'],
-       color:"#00b48d ",
-       highlight: "#FF5A5E ",
-       label: "Science"
-   },
-   {
-       value: count['Recreation'],
-       color:"#ff6d00 ",
-       highlight: "#FF5A5E ",
-       label: "Recreation"
-   },
-   {
-       value: count['Sports'],
-       color:"#8252b1 ",
-       highlight: "#FF5A5E ",
-       label: "Sport"
-   },
-  
-  
-   {
-       value: count['Games'],
-       color:"#f1583e ",
-       highlight: "#FF5A5E ",
-       label: "Games"
-   },
-   {
-       value: count['Health'],
-       color: "#abb48d ",
-       highlight: "#5AD3D1 ",
-       label: "Health"
-   },
-   {
-       value: count['Home'],
-       color: "#f16690 ",
-       highlight: "#FFC870 ",
-       label: "Home"
-   }
-
-      ];
-
-    var myPie = new Chart(document.getElementById("myChart").getContext("2d")).Doughnut(pieData,{percentageInnerCutout : 80});  
             // });
-            $('#myChart').show();
+            // $('#myChart').show();
           } else {
             alert("Data not recieved");
           }
