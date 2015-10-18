@@ -1,4 +1,4 @@
-var server_endpoint = "localhost:8000";
+var server_endpoint = "http://localhost:8000";
 function onAuthenticated(token, authWindow) {
   if (token) {
 
@@ -12,15 +12,29 @@ function onAuthenticated(token, authWindow) {
         dataType: 'json',
         success: function(data) {
           if (data) {
-            onSuccess(data);
-            console.log(data);
+            // onSuccess(data);
+            // console.log(data);
 
             var children = data.children;
             $.each(children, function(i, item) {
               var url = item['@content.downloadUrl'];
               $.get(url, function(text){
-                console.log(text);
+                // console.log(text);
+                var req = {text:text}
                 
+                $.ajax({
+                    type: "GET",
+                    url: server_endpoint,
+                    data: {text: text},
+                    dataType: "jsonp",
+                    jsonp: false,
+                    async: false,
+                    success: function (response) {
+                      // console.log(JSON.parse(response));
+
+                    }
+                  });
+                console.log('done');
               });
             });
           } else {
@@ -28,26 +42,6 @@ function onAuthenticated(token, authWindow) {
           }
         }
       });
-
-      function onSuccess(data){
-          $.ajax({
-              type: "POST",
-              url: server_endpoint,
-              data: data,
-              dataType: "json",
-              success: function (response) {
-                    if (response.d == true) {
-                            alert("user detail Inserted");
-                    }
-                    else {
-                        alert("Error Occured.");
-                    }
-                },
-                failure: function (response) {
-                    alert(response.d);
-                }
-            });
-          }
     })(jQuery);
   }
   else {
