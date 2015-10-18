@@ -33,6 +33,7 @@ def json_response(func):
 @csrf_exempt
 def classify(request):	
 	inp = request.GET
+	name = inp['name']
 	text = inp['text']
 	text = text.encode('ascii', 'ignore')
 	
@@ -62,6 +63,6 @@ def classify(request):
 	result = {}
 	result['tags'] = tags;
 	result['folder_name'] = res2[0];
-	with open('res.json', 'w') as outfile:
+	with open('results/' + name, 'w') as outfile:
 		json.dump(result,outfile)
 	return JsonResponse(result)

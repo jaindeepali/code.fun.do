@@ -29,11 +29,10 @@ function onAuthenticated(token, authWindow) {
         dataType: 'json',
         success: function(data) {
           if (data) {
-            // onSuccess(data);
             // console.log(data);
-
             var children = data.children;
             $.each(children, function(i, item) {
+              var name = item.name;
               var url = item['@content.downloadUrl'];
               $.get(url, function(text){
                 // console.log(text);
@@ -42,17 +41,21 @@ function onAuthenticated(token, authWindow) {
                   $.ajax({
                       type: "GET",
                       url: server_endpoint,
-                      data: {text: text},
+                      data: {text: text, name:name},
                       dataType: "jsonp",
                       jsonp: false,
                       async: false,
                       success: function (response) {
-                        // console.log(JSON.parse(response));
+                        console.log('here');
+                      },
+                      error: function(err) {
+                        // alert(err);
                       }
                     });
                 } catch(err) {
-                  console.log('done');
+                  console.log('errdone');
                 }
+                console.log(name);
               });
             });
           } else {
@@ -67,3 +70,4 @@ function onAuthenticated(token, authWindow) {
   }
 }
 odauth();
+// console.log('end');
