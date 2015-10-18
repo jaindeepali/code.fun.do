@@ -69,5 +69,5 @@ function onAuthenticated(token, authWindow) {
     alert("Error signing in");
   }
 }
-// odauth();
+odauth();
 // console.log('end');
