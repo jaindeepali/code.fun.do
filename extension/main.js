@@ -7,6 +7,23 @@ function onAuthenticated(token, authWindow) {
       var odurl = "https://api.onedrive.com/v1.0/drive/root:/Documents/:";
       var odquery = "?expand=thumbnails,children(expand=thumbnails(select=large,c200x150_Crop))&access_token=" + token;
 
+      // $.ajax({
+      //     type: "POST",
+      //     url: odurl,
+      //     data: {
+      //           name: "Arts",
+      //           // folder:{},
+      //           // @name.conflictBehavior: "rename"
+      //         },
+      //     dataType: "json",
+      //     jsonp: false,
+      //     async: false,
+      //     success: function (response) {
+      //       // console.log(JSON.parse(response));
+
+      //     }
+      //   });
+
       $.ajax({
         url: odurl + odquery,
         dataType: 'json',
@@ -21,20 +38,21 @@ function onAuthenticated(token, authWindow) {
               $.get(url, function(text){
                 // console.log(text);
                 var req = {text:text}
-                
-                $.ajax({
-                    type: "GET",
-                    url: server_endpoint,
-                    data: {text: text},
-                    dataType: "jsonp",
-                    jsonp: false,
-                    async: false,
-                    success: function (response) {
-                      // console.log(JSON.parse(response));
-
-                    }
-                  });
-                console.log('done');
+                try{
+                  $.ajax({
+                      type: "GET",
+                      url: server_endpoint,
+                      data: {text: text},
+                      dataType: "jsonp",
+                      jsonp: false,
+                      async: false,
+                      success: function (response) {
+                        // console.log(JSON.parse(response));
+                      }
+                    });
+                } catch(err) {
+                  console.log('done');
+                }
               });
             });
           } else {
