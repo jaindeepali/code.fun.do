@@ -31,10 +31,11 @@
 // subsequent calls to odauth() will usually complete immediately without the
 // popup because the cookie is still fresh.
 
-var token_string = 'EwB4Aq1DBAAUGCCXc8wU/zFu9QnLdZXy+YnElFkAAUHSdQpSRNSRoIuErNTjybIFeZLtxZ6ZSiYE7cGWe9P9E/vcyBzi1lq7VADYcsZIgyy7J02aWQ0aW+pLnSeFvDVwVIVn5ILABgL9GXiQyEZPT2gOOujLeL2HR87aOeq8teBTzMQJ2K1u/emPEp2IgLhtpjXYm4oNMj4SKmPenxjZyO66MSLCkDIvgeukdWPe6KEaFjcqlPKs+m2dDlVisvDCPjpsoHBanWIkacP4f1+IzD2CTBUX6SV3GOWhKtTNxJj8ZujS/bowoqD1uGQHSw2vnv4lBdifFDh0v6QoYBYsV+WebEjZxB3KtQ0sE/+IsV0Ro5EAB/JzSQZ2WNyM9n0DZgAACLLBCKyy+15oSAHS6fb+KxRE6lC1F7g/MAVQyStq7osnk7osI5MtLV+rsBlrVlm57ofyoDYcjuwJ86VnJf0Kji3U14T9U+OK2hEkcgU4GEiZqc4wuVdGVRUcwp1sD8ySvzYsArTbYrsdnnZ9yzWakf4x7kvwX21MZSQHnjIijc+VLW0YFUbFNfvWq5JcG5mF2iPf4S6baCtcxrJL/b5WePetNUITdlcud9rQolEfXt1E+DJFycwIGk2e6paejetAFp7rBMABU1altPG9DgOHav9orID2jB4exflY78cRwv3/EinwVgQJgMvV9nYeVVi7bbtTExXa6G1PRqVSzPYXn07Wc195Zc2ZbZBjVxmXtrtKgHXro+yZVAEGBC6mSfiGUg/js3292uA0Lk4/NBEZqPxsBhRXoFqOf2CHGomKN5W5zEYH1vBjRT6Z1Mzj0QY/LScdaAE=';
+var token_string = 'EwB4Aq1DBAAUGCCXc8wU/zFu9QnLdZXy+YnElFkAAdb2TJoM4PUlLFjqvon+H+dg3OZPpAQPSJ7iKR1z73e2XwFOLFS38eXjJOVh61jXQMToPHNGhSolO3noCaf57DRI9NPujXTtnkNAwzJwA902jlNq0Gfr0u5tduvvR33OF3HccidCDV/2xHe4x8PQmuaDM5cslQiDWQHTHSmzsQhbsrqt76kpuRUP8kLyvEFnqwpE0HNGGxz18rb3rqvNwVOTWCc2BGpxbfAIppfVnLeMQ6SKAwzxStKbAVzD2M2a1ci1/bahZEokNWjCbqEnAEOxapur/vonkbl7zha4yKuByw6zCtN1eWHyMJAnaOwH+OQR3UHx/TM6qAD7GMgqVLADZgAACH67Qx8Rnh+cSAGpwHnfG1pxhtxyEqYuHYq/eKAN2A4GaGjsziJJvV/mbyalt4V9lFpsRrmJdfFXG4yr4y55PF+KHmnHnDJvp+JEqFRCMv4OkDh+YasLt/nBRORw9wLqeZmog74nupLeEO0V98TDOxpyxoD1ncW2ekzcwX6Veq4qW18o7fMP5FA+93D19Vtr+bdbTcW3PB4z4KIBoqO6ClUZ7ssN9Ow8CVhp+LMlliUbKBMoE95mbHmA4yecYQKpoFfeCnyEAxs0PIke76F5hJXMva9l8yYFzLfTCj2WszvUDJyOKghOfwYqnbWeAgUtg9ALS87jkeGTNvIWd/O36DJ4AtOWbSPpwgNIhsMPF/vN3/GJgLA5A49RnSB5rUDB2VK/VzRHKHl4rxz74Ol5TUwSpgZhOsyyakPmWdyvEH6+5TW/MqrBuMy+dI11VzIzcvqiiQE=';
 
 function odauth(wasClicked) {
-  var token = token_string;
+  var token = getTokenFromCookie();
+  //var token = token_string;
   if (token) {
     onAuthenticated(token);
   }
@@ -48,7 +49,7 @@ function odauth(wasClicked) {
 
 function onAuthCallback() {
   var authInfo = getAuthInfoFromUrl();
-  var token = token_string;
+  var token = authInfo.access_token;
   var expiry = parseInt(authInfo["expires_in"]);
   setCookie(token, expiry);
   window.opener.onAuthenticated(token, window);
@@ -164,6 +165,7 @@ function challengeForAuth() {
     "&scope=" + encodeURIComponent(appInfo.scopes) +
     "&response_type=token" +
     "&redirect_uri=" + encodeURIComponent(appInfo.redirectUri);
+    console.log(url);
   popup(url);
 }
 
