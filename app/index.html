@@ -9,26 +9,27 @@
     <meta name="author" content="">
 
     <title>Onedrive Files Clustering</title>
-    <script src="/static/jquery-2.1.4.min.js"></script>
+    <script src="jquery-2.1.4.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
 
     <!-- Plugin CSS -->
-    <link rel="stylesheet" href="/static/css/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/static/css/creative.css" type="text/css">
-    <script type="text/javascript" src="/static/Chart.js"></script>
-    <script id="odauth" src="/static/js/odauth.js"
-       clientId="000000004016F5E2" scopes="onedrive.readonly wl.signin"
-       redirectUri="https://onedrive.github.io/odx/callback.html"></script>
+    <link rel="stylesheet" href="css/creative.css" type="text/css">
+
+    <script type="text/javascript" src="Chart.js"></script>
+    <script id="odauth" src="js/odauth.js"
+       clientId="000000004818B361" scopes="onedrive.readwrite wl.signin"
+       redirectUri="https://dev.onedrive.com/odx/callback.html"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -64,7 +65,7 @@
                         <a class="page-scroll" href="#portfolio">Categories</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="/static/js/wow.min.js">Contact</a>
+                        <a class="page-scroll" href="js/wow.min.js">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -87,7 +88,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <span  id ="organiseNow" class="btn btn-default btn-xl" onclick='odauth();'>Organise!</span>
+                    <span  id ="organiseNow" class="btn btn-default btn-xl" onclick='odauth(true);'>Organise!</span>
                     <hr class="light">
                     <canvas id="myChart" width="300" height="300" style='display:none;'></canvas>
                 </div>
@@ -333,7 +334,7 @@
     </section>
 
     <section class="organised-files">
-        
+
     </section>
     <div class="page-scroll"></div>
 
@@ -361,20 +362,20 @@
     </section>
 
     <!-- jQuery -->
-    <script src="/static/js/jquery.js"></script>
+    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="/static/js/jquery.easing.min.js"></script>
-    <script src="/static/js/jquery.fittext.js"></script>
-    <script src="/static/js/wow.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.fittext.js"></script>
+    <script src="js/wow.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="/static/js/creative.js"></script>
+    <script src="js/creative.js"></script>
 
-    <script type="text/javascript" src="/static/js/main.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 
 </body>
 
